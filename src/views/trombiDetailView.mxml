@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="{data.displayname}" xmlns:assets="assets.*">
+	<fx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button id="backButton" click="navigator.popView();" icon="@Embed('assets/home.png')"/>
+	</s:navigationContent>
+	
+	<assets:trombi_bg2 x="0" bottom="0" alpha=".2"/>
+	
+	<!--s:Image top="20" left="20" width="207" height="266"
+			 source="http://trombi.it-sudparis.eu/jpegPhoto.php?dn=uid%3D{data.uid}%2Cou%3DPeople%2Cdc%3Dint-evry%2Cdc%3Dfr"/-->
+	
+	<s:BitmapImage id="bmpImg" 
+				   top="20" left="20" width="207" height="266"
+				   source="http://trombi.it-sudparis.eu/jpegPhoto.php?dn=uid%3D{data.uid}%2Cou%3DPeople%2Cdc%3Dint-evry%2Cdc%3Dfr">
+		<s:mask>
+			<s:BorderContainer id="bmpMask"
+							   cornerRadius="20"
+							   width="{bmpImg.width}" height="{bmpImg.height}" />
+		</s:mask>
+	</s:BitmapImage>
+	
+	<s:Group x="254" y="57" width="365" height="193" color="#6677B4" fontFamily="Arial">
+		<s:Label x="10" y="0" text="{data.nom}"/>
+		<s:Label x="10" y="50" text="{data.prenom}"/>
+		<s:Label x="10" y="100" text="{data.ecole}"/>
+		<s:Label x="10" y="150" text="{data.promo}"/>
+	</s:Group>
+	<s:Button x="231" y="354" label="Email" icon="assets/mail.png" click="navigateToURL(new URLRequest('mailto:'+data.mail))"/>
+</s:View>
