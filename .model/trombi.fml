@@ -1,0 +1,86 @@
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <service name="TrombiService">
+    <annotation name="ActionScriptGeneration">
+      <item name="ServiceType">HTTPMultiService</item>
+      <item name="Package">services.trombiservice</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">HTTPService</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="LINKED_FILE"></item>
+    </annotation>
+    <function name="trombi" return-type="User[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ActionScriptGeneration">
+        <item name="SerializationFilter">com.adobe.serializers.xml.XMLSerializationFilter</item>
+        <item name="method">GET</item>
+        <item name="url">http://bda-tmsp.com/gestion/services/LdapService.php</item>
+      </annotation>
+      <annotation name="url group">
+        <item name="completeURL">http://bda-tmsp.com/gestion/services/LdapService.php</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">uid,mail,ecole,prenom,nom,displayname,promo</item>
+      </annotation>
+      <annotation name="Properties">
+        <item name="xPath">/::user</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParamNames">displayname</item>
+        <item name="inputParams">string</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="displayname" type="string"/>
+    </function>
+  </service>
+  <entity name="User">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">User</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TrombiService,TrombiServiceDummy</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <annotation name="trombi">
+      <item name="propertySpecifier">uid,mail,ecole,prenom,nom,displayname,promo</item>
+    </annotation>
+    <property name="uid" type="string"/>
+    <property name="mail" type="string"/>
+    <property name="ecole" type="string"/>
+    <property name="prenom" type="string"/>
+    <property name="nom" type="string"/>
+    <property name="displayname" type="string"/>
+    <property name="promo" type="string"/>
+  </entity>
+  <entity name="Ldap">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Ldap</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TrombiService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="trombi">
+      <item name="propertySpecifier">user</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="user" type="User[]" required="true"/>
+  </entity>
+</model>
