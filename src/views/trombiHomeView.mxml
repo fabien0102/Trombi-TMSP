@@ -30,7 +30,7 @@
 		]]>
 	</fx:Script>
 	<fx:Declarations>
-		<s:CallResponder id="trombiResult" result="data=trombiResult.lastResult"/>
+		<s:CallResponder id="trombiResult" />
 		<trombiservice:TrombiService id="trombiService"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -40,7 +40,7 @@
 	<assets:trombi_bg x="0" bottom="0"/>
 	<s:List id="list" top="0" bottom="0" left="0" right="0" visible="false" alpha=".9"
 			labelField="displayname" change="navigator.pushView(trombiDetailView, list.selectedItem)"
-			dataProvider="{data}">
+			dataProvider="{trombiResult.lastResult}">
 	</s:List>
 	
 </s:View>

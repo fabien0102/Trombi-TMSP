@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		title="{data.displayname}" xmlns:assets="assets.*">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:assets="assets.*"
+		overlayControls="false" tabBarVisible="true" title="{data.displayname}"
+		addedToStage="addedToStageHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import flash.net.navigateToURL;
+			
+			import pl.mllr.extensions.contactEditor.ContactEditor;
+			
+			private var contactEditor:ContactEditor;
+			
+			protected function addedToStageHandler(event:Event):void
+			{
+				contactEditor=new ContactEditor();
+			}
+			
+			protected function addContactBtn_clickHandler(event:MouseEvent):void
+			{
+				// Ajout de la personne dans les contacts du téléphone
+				contactEditor.addContact(data.prenom,data.nom,"",data.ecole,data.mail);
+				
+			}
+
+			
 		]]>
 	</fx:Script>
 	
@@ -17,9 +37,6 @@
 	</s:navigationContent>
 	
 	<assets:trombi_bg2 x="0" bottom="0" alpha=".2"/>
-	
-	<!--s:Image top="20" left="20" width="207" height="266"
-			 source="http://trombi.it-sudparis.eu/jpegPhoto.php?dn=uid%3D{data.uid}%2Cou%3DPeople%2Cdc%3Dint-evry%2Cdc%3Dfr"/-->
 	
 	<s:BitmapImage id="bmpImg" 
 				   top="20" left="20" width="207" height="266"
@@ -37,5 +54,11 @@
 		<s:Label x="10" y="100" text="{data.ecole}"/>
 		<s:Label x="10" y="150" text="{data.promo}"/>
 	</s:Group>
-	<s:Button x="231" y="354" label="Email" icon="assets/mail.png" click="navigateToURL(new URLRequest('mailto:'+data.mail))"/>
+	
+	<s:Button id="addContactBtn" x="124" y="353" label="Ajouter"
+			  click="addContactBtn_clickHandler(event)" icon="@Embed('assets/address_book_128.png')"/>
+	
+	<s:Button id="EmailBtn" x="365" y="353" label="Email"
+			  click="navigateToURL(new URLRequest('mailto:'+data.mail))"
+			  icon="@Embed('assets/mail.png')"/>
 </s:View>
