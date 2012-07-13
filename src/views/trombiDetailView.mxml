@@ -14,14 +14,13 @@
 			
 			protected function addedToStageHandler(event:Event):void
 			{
-				contactEditor=new ContactEditor();
+				contactEditor = new ContactEditor();
 			}
 			
 			protected function addContactBtn_clickHandler(event:MouseEvent):void
 			{
 				// Ajout de la personne dans les contacts du téléphone
-				contactEditor.addContact(data.prenom,data.nom,"",data.ecole,data.mail);
-				
+				contactEditor.addContact(data.prenom,data.nom,"",data.ecole,data.mail);	
 			}
 
 			
