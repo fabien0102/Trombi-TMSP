@@ -2,28 +2,11 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:assets="assets.*"
-		overlayControls="false" tabBarVisible="true" title="{data.displayname}"
-		addedToStage="addedToStageHandler(event)">
+		overlayControls="false" tabBarVisible="true" title="{data.displayname}">
 	<fx:Script>
 		<![CDATA[
 			import flash.net.navigateToURL;
-			
-			import pl.mllr.extensions.contactEditor.ContactEditor;
-			
-			private var contactEditor:ContactEditor;
-			
-			protected function addedToStageHandler(event:Event):void
-			{
-				contactEditor = new ContactEditor();
-			}
-			
-			protected function addContactBtn_clickHandler(event:MouseEvent):void
-			{
-				// Ajout de la personne dans les contacts du téléphone
-				contactEditor.addContact(data.prenom,data.nom,"",data.ecole,data.mail);	
-			}
-
-			
+						
 		]]>
 	</fx:Script>
 	
@@ -53,9 +36,6 @@
 		<s:Label x="10" y="100" text="{data.ecole}"/>
 		<s:Label x="10" y="150" text="{data.promo}"/>
 	</s:Group>
-	
-	<s:Button id="addContactBtn" x="124" y="353" label="Ajouter"
-			  click="addContactBtn_clickHandler(event)" icon="@Embed('assets/address_book_128.png')"/>
 	
 	<s:Button id="EmailBtn" x="365" y="353" label="Email"
 			  click="navigateToURL(new URLRequest('mailto:'+data.mail))"
